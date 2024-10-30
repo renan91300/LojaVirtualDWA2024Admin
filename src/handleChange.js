@@ -1,4 +1,3 @@
-//handleChange.js
 function handleChange(event, inputs, setInputs) {
     if (event.target.type === "checkbox") {
         const value = event.target.checked === true;

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import api from "./axiosApi";
 import FormButtons from './FormButtons';
 import handleChange from './handleChange';
+import parseErrors from './parseErrors';
 import Loading from './Loading';
 
 const EditProduct = () => {
@@ -34,16 +35,22 @@ const EditProduct = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
+        setLoading(true);
         api.post("/alterar_produto", inputs)
             .then((response) => {
                 if (response.status === 204) {
                     navigate("/products");
+                } if (response.status === 422) {
+                    setErrors(parseErrors(response.data));
                 } else {
                     console.log(response);
                 }
             })
             .catch((error) => {
                 console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
 

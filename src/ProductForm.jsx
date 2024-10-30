@@ -24,7 +24,7 @@ const ProductForm = ({ handleChange, inputs, errors, isNew }) => {
                         numeralPositiveOnly: true, 
                         numeralThousandsGroupStyle: 'thousand', 
                         delimiter: '.', 
-                        numeralDecimalMark: ',' 
+                        numeralDecimalMark: ','
                     }} />
                 </div>
             </div>
