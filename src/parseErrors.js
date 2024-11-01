@@ -1,6 +1,6 @@
-function parseErrors(response) {
+function parseErrors(data) {
     const errors = {};
-    response.detail.forEach(error => {
+    data.detail.forEach(error => {
         const fieldName = error.loc[error.loc.length - 1];
         const fullMessage = error.msg;
         const errorMessage = fullMessage.includes(',') 
@@ -8,6 +8,7 @@ function parseErrors(response) {
             : fullMessage;
         errors[fieldName] = errorMessage;
     });
+    console.log(errors);
     return errors;
 }
 
