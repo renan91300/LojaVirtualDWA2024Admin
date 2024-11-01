@@ -37,15 +37,17 @@ const EditProduct = () => {
         event.preventDefault();
         setLoading(true);
         api.post("/alterar_produto", inputs)
-            .then((response) => {                
+            .then((response) => {
+                //console.log(response);
                 if (response.status === 204) {
                     navigate("/products");
                 } else {
-                    console.log(response);
+                    //console.log(response);
                 }
             })
-            .catch((error) => {                
-                setErrors(parseErrors(error.response.data));
+            .catch((error) => {
+                if (error && error.response && error.response.data)
+                    setErrors(parseErrors(error.response.data));
             })
             .finally(() => {
                 setLoading(false);
