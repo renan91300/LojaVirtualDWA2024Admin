@@ -4,6 +4,7 @@ import TableProducts from "./TableProducts";
 import api from "./axiosApi";
 import Loading from "./Loading";
 import ModalConfirm from "./ModalConfirm";
+import { Link } from "react-router-dom";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -27,7 +28,7 @@ const Products = () => {
 
     const deleteProduct = (productId) => {
         setLoading(true);
-        api.postForm("excluir_produto", {"id_produto": productId})
+        api.postForm("admin/excluir_produto", { "id_produto": productId })
             .then(response => {
                 if (response.status === 204)
                     loadProducts();
@@ -52,10 +53,14 @@ const Products = () => {
 
     return (
         <>
+            <div className="d-flex justify-content-end mb-3 mt-3">
+                <Link to="/products/create" className="btn btn-success accordio ms-2">Adicionar produto</Link>
+            </div>
             {products.length > 0 ?
                 <>
                     <ModalConfirm modalId="modalDeleteProduct" question="Deseja realmente excluir o produto?" confirmAction={() => deleteProduct(selectedProductId)} />
-                    <TableProducts items={products} handleDeleteProduct={handleDeleteProduct}/> 
+                    {/* Botão adicionar novo produto */}
+                    <TableProducts items={products} handleDeleteProduct={handleDeleteProduct} />
                 </> :
                 (!loading && <NoProducts />)
             }

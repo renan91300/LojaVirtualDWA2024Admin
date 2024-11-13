@@ -5,7 +5,7 @@ import Layout from "./Layout";
 import NotFound from "./NotFound";
 import Orders from "./Orders";
 import OrderDetails from "./OrderDetails";
-import EditProduct from "./EditProduct";
+import CreateEditProduct from "./CreateEditProduct";
 import Users from "./Users";
 import Authorization from "./Authorization";
 
@@ -17,7 +17,8 @@ const App = () => {
                     <Route index element={<Home />} />
                     <Route path="/users" element={<Authorization><Users /></Authorization>} />
                     <Route path="/products" element={<Authorization><Products /></Authorization>} />
-                    <Route path="/products/:id" element={<Authorization><EditProduct /></Authorization>} />
+                    <Route path="/products/:id" element={<Authorization><CreateEditProduct /></Authorization>} />
+                    <Route path="/products/create" element={<Authorization><CreateEditProduct /></Authorization>} />
                     <Route path="/orders" element={<Authorization><Orders /></Authorization>} />
                     <Route path="/orders/:id" element={<Authorization><OrderDetails /></Authorization>} />
                 </Route>
